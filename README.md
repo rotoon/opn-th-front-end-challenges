@@ -1,42 +1,113 @@
-# Opn Front-end Code Challenges
+# Front-end Live-coding Session
 
-**Opn**'s front-end code challenges are housed in this repository. These are tiny hands-on projects that are directly related to the things you'll be working on here.
+## Introduction
 
-## Ground Rules
+You will need to grab on the requirements and complete the project while ensuring the application to have great engineering and well-design by using API endpoints given at:
 
-* We favor well-thought-out ideas over quick-and-dirty answers. So, if you need it, take your time.
-* Please send your project repo to your contact person through email for a take-home assignment.
-* Do not distribute your solution via GitHub or any other public source repository.
+### API:
 
-## What to expect
+-   `http`: http://c8036bd8-ea01-4f47-9ff1-dbf8001a0500.mock.pstmn.io
+-   `https`: https://c8036bd8-ea01-4f47-9ff1-dbf8001a0500.mock.pstmn.io
+-   `https`: https://react-code-challenge-mock-api.netlify.app
 
-We recognize that our coding challenges are time-consuming and not always simple to complete. We appreciate the time and work that candidates put into their applications. Our code challenges are designed to simulate some tasks and skills you'll need while working with us. We think that these tasks will provide you with a better knowledge of our product, what you will be working on in the future, and what degree of dedication we expect from candidates.
+## Scenario
 
-## What we look for
+Once upon a time... nope!
+So here, you have been temporarily hired by Opn and assigned to work on the little e-commerce project which the previously assigned front-end developer and designer got the urgent matters to solve, so they will not be able to finish the project on time.
 
-Rather than a complicated solution with a million features and 10,000 lines of code, we seek for:
+## Requirements
 
-* **Clarity:** You can write clear code that any devs could read and understand in one go.
-* **Simplicity:** You can write gimmick-free and straightforward code with no ambiguities.
-* **Defensiveness:** You can cover edge cases and treat user inputs with care.
-* **Don't repeat yourself:** You can reduce repetition of software patterns to avoid redundancy.
+The design can click this link [Figma](https://figma.fun/3oegaU) and the requirements are below.
 
-## What happens after your submission
+-   Add card validation on Checkout form:
+    -   Must be a valid card number
+    -   Must be Visa / Master card type
+    -   Must be valid expiration date
+    -   Must be valid CVV
+-   Complete the API integration:
+    -   Call the web service for payment submission
+-   Add new UI on Checkout form:
+    -   Display the icon (Visa/Master) based on card number input
+    -   Style “Pay” button of the checkout form according to Figma UI
 
-Our engineers will review the code. Due to the number of submissions we receive and the time-intensive review process, it might take us 1-week to give you feedback on the submission. Based on the feedback, if you did the take-home assignment, we will invite you for a meeting to present more about your submission and continue a technical interview.
+## Getting started
 
-## Challenges
+### Installation
 
-You have 2 choices:
+Change the `example.env` to `.env`
 
-1. Take-home assignment replicate how software development actually happens. You can use tools of your choosing, you get to do so in an environment you’re comfortable in, and you get to do it on the schedule that works for them.
+```bash
+$ yarn install
+```
 
-* **React & Vue** - [take-home assignment](https://github.com/opn-ooo/opn-th-front-end-challenges/tree/master/take-home)
+### Running the app
 
-2. Live-coding session is a real-time face-to-face engagement with interviewers during which you may demonstrate your coding abilities using your preferred code editor. We have an incomplete project that we will let you finish on time (around 2 hours).
+```bash
+# development
+$ yarn dev
 
-* **React** - [live-coding session](https://github.com/opn-ooo/opn-th-front-end-challenges/tree/master/live-coding)
+# build production
+$ yarn build
+```
 
-### Have fun and we look forward to your submission
+## Notes
 
-## ᕙ(⇀‸↼‶)ᕗ
+### Figma for UI Design:
+
+-   Prototype: [https://figma.fun/tnuL7b](https://www.figma.com/proto/iiI0567JTHz6L5GBI0kdgJ/Code-challenge-UI?page-id=0%3A1&node-id=15%3A2&viewport=1765%2C259%2C1.0015398263931274&scaling=min-zoom)
+-   File: [https://figma.fun/OysH5f](https://www.figma.com/file/iiI0567JTHz6L5GBI0kdgJ/Code-challenge-UI?node-id=0%3A1)
+
+### Services
+
+-   Get Product: {{ api_endpoint }}/products
+-   Submit Payment: {{ api_endpoint }}/pay
+
+#### Example of request
+
+```json
+{
+    "paymentInfo": {
+        "email": "aaa@opn.ooo",
+        "cardInfo": {
+            "cardNo": "123456778888",
+            "cardExpiryDate": "33/21",
+            "cardCVV": "124"
+        }
+    },
+    "products": [
+        { "id": "1", "quantity": 1 },
+
+        { "id": "2", "quantity": 5 }
+    ]
+}
+```
+
+#### Example of response
+
+```json
+{
+    "requestId": "12344556",
+    "result": {
+        "errorCode": "0",
+        "errorDesc": "Success"
+    },
+    "paymentInfo": {
+        "email": "aaa@opn.ooo",
+        "cardInfo": {
+            "cardNo": "123456778888",
+            "cardExpiryDate": null,
+            "cardCVV": null
+        }
+    }
+}
+```
+
+Desire to win the war? Well, to make it a little more fun, please remember that
+
+**You cannot**:
+
+-   Change existing behaviors.
+-   Change the API server.
+-   Change from JavaScript/TypeScript to other languages.
+
+Let's rock! 🤘
